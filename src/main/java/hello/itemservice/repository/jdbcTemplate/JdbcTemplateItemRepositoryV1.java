@@ -60,7 +60,7 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
 
     @Override
     public Optional<Item> findById(Long id) {
-        String sql = "select id, itemName, price, quantity from item where id = ?";
+        String sql = "select id, item_name, price, quantity from item where id = ?";
 
         // queryForObject는 값이 없으면 EmptyResultDataAccessException 예외가 터진다.
         try {
@@ -83,18 +83,18 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
         // 상황에 따라 들어가는 sql문이 다르다.
         // ex) item_name만 있는 경우, price만 있는 경우
         if(StringUtils.hasText(itemName) || maxPrice != null) {
-            sql += "where";
+            sql += " where";
         }
 
         boolean andFlag = false;
         List<Object> param = new ArrayList<>();
-        if(StringUtils.hasText(itemName)) {
+        if(StringUtils.hasText(itemName)) { // item이름이 있는 경우
             sql += " item_name like concat('%',?,'%')";
             param.add(itemName);
             andFlag = true;
         }
 
-        if(maxPrice != null) {
+        if(maxPrice != null) { // 가격이 있는 경우
             if(andFlag) {
                 sql += " and";
             }
