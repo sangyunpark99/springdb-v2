@@ -61,6 +61,7 @@ public class JdbcTemplateItemRepositoryV2 implements ItemRepository {
         // 작성해준 순서대로 파라미터 바인딩을 해주어야 한다.
         String sql = "update item set item_name=:itemName, price=:price, quantity=:quantity where id=:id";
 
+        // updateParam에는 id가 존재하지 않기때문에, MapSqlParameterSource를 사용해준다.
         MapSqlParameterSource param = new MapSqlParameterSource()
                 .addValue("itemName", updateParam.getItemName())
                 .addValue("price", updateParam.getPrice())
@@ -124,6 +125,6 @@ public class JdbcTemplateItemRepositoryV2 implements ItemRepository {
 
     // Item 객체를 생성해서 반환해준다.
     private RowMapper<Item> itemRowMapper() { // 데이터 매핑 결과
-        return BeanPropertyRowMapper.newInstance(Item.class); // camel 변환 지원
+        return BeanPropertyRowMapper.newInstance(Item.class); // camel 변환 지원(DB는 item_name)
     }
 }
