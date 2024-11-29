@@ -5,6 +5,7 @@ import hello.itemservice.repository.ItemSearchCond;
 import hello.itemservice.repository.ItemUpdateDto;
 import hello.itemservice.repository.memory.MemoryItemRepository;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest // SpringBootApplication을 찾는다. @Import 설정을 그대로 가져온다.
 class ItemRepositoryTest {
 
+    // 테스트 원칙
+    // 테스트는 달느 테스트와 격리해야 한다.
+    // 테스트는 반복해서 실행할 수 있어야 한다.
     @Autowired
     ItemRepository itemRepository;
 
@@ -25,6 +29,12 @@ class ItemRepositoryTest {
         if (itemRepository instanceof MemoryItemRepository) {
             ((MemoryItemRepository) itemRepository).clearStore();
         }
+    }
+
+    // 각가의 테스트가 끝날때마다 해당 테스트에서 추가한 데이터를 삭제해야 한다.
+    @BeforeEach
+    void beforeEach() {
+
     }
 
     @Test
