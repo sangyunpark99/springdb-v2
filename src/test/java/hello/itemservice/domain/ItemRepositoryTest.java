@@ -9,6 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.List;
 
@@ -23,18 +26,28 @@ class ItemRepositoryTest {
     @Autowired
     ItemRepository itemRepository;
 
+    @Autowired
+    PlatformTransactionManager transactionManager;
+
+    TransactionStatus status;
+
+    @BeforeEach
+    void beforeEach(){
+        // 트랜잭션 시작
+        status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+    }
+
+    // 각가의 테스트가 끝날때마다 해당 테스트에서 추가한 데이터를 삭제해야 한다.
     @AfterEach
     void afterEach() {
         //MemoryItemRepository 의 경우 제한적으로 사용
         if (itemRepository instanceof MemoryItemRepository) {
             ((MemoryItemRepository) itemRepository).clearStore();
         }
-    }
 
-    // 각가의 테스트가 끝날때마다 해당 테스트에서 추가한 데이터를 삭제해야 한다.
-    @BeforeEach
-    void beforeEach() {
-
+        // 트랜잭션 롤백
+        // 테스트가 실행되어도 롤백이 일어나서 DB에 데이터가 저장되지 않는다.
+        transactionManager.rollback(status);
     }
 
     @Test
