@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@SpringBootTest // SpringBootApplication을 찾는다. @Import 설정을 그대로 가져온다.
 class ItemRepositoryTest {
 
     @Autowired
@@ -87,6 +87,8 @@ class ItemRepositoryTest {
 
     void test(String itemName, Integer maxPrice, Item... items) {
         List<Item> result = itemRepository.findAll(new ItemSearchCond(itemName, maxPrice));
+        // 데이터가 너무 많아서 아래 코드가 에러가 난다. -> findItem 테스트는 애초에 3개만 저장을 하고 find 한다고 가정하기 때문에
+        // 이전 테스트의 데이터들이 쌓이게 된다.
         assertThat(result).containsExactly(items);
     }
 }
