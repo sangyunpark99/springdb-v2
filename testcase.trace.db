@@ -1,0 +1,18 @@
+2024-11-29 23:50:36.724640+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEM" not found (this database is empty); SQL statement:
+INSERT INTO item () VALUES() [42104-224]
+2024-11-29 23:53:56.401580+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEM" not found (this database is empty); SQL statement:
+INSERT INTO item () VALUES() [42104-224]
+2024-11-29 23:55:09.452498+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEM" not found (this database is empty); SQL statement:
+INSERT INTO item () VALUES() [42104-224]
+2024-11-29 23:56:07.254302+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEM" not found (this database is empty); SQL statement:
+INSERT INTO item () VALUES() [42104-224]
+2024-11-29 23:58:13.080949+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEM" not found (this database is empty); SQL statement:
+INSERT INTO item () VALUES() [42104-224]
+2024-11-29 23:59:48.708796+09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ITEM" not found (this database is empty); SQL statement:
+INSERT INTO item () VALUES() [42104-224]

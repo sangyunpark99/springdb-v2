@@ -11,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Transactional // test에서 사용시 테스트를 transaction 안에서 실행하고, 테스트가 끝나면 자동으로 롤백시킨다.
 @SpringBootTest // SpringBootApplication을 찾는다. @Import 설정을 그대로 가져온다.
 class ItemRepositoryTest {
 
@@ -34,7 +36,7 @@ class ItemRepositoryTest {
     @BeforeEach
     void beforeEach(){
         // 트랜잭션 시작
-        status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+        // status = transactionManager.getTransaction(new DefaultTransactionDefinition());
     }
 
     // 각가의 테스트가 끝날때마다 해당 테스트에서 추가한 데이터를 삭제해야 한다.
@@ -47,7 +49,7 @@ class ItemRepositoryTest {
 
         // 트랜잭션 롤백
         // 테스트가 실행되어도 롤백이 일어나서 DB에 데이터가 저장되지 않는다.
-        transactionManager.rollback(status);
+        // transactionManager.rollback(status);
     }
 
     @Test
