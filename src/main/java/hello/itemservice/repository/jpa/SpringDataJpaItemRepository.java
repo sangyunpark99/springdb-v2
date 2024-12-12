@@ -10,8 +10,8 @@ import java.util.List;
 public interface SpringDataJpaItemRepository extends JpaRepository<Item, Long> {
 
     // 조건 없이 검색하는건 Spring Data Jpa가 기본적으로 CRUD 기능이 제공된다.
-
-    List<Item> findByItemNameLike(@Param(("itemName")) String itemName);
+    // hibernate의 개인적인 버그로 @Param을 붙여주거나 version을 낮춰주면 된다.
+    List<Item> findByItemNameLike(@Param("itemName") String itemName);
 
     List<Item> findByPriceLessThanEqual(Integer price);
 
