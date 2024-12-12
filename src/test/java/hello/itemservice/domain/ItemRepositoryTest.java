@@ -66,7 +66,7 @@ class ItemRepositoryTest {
     }
 
     @Test
-    @Commit // update query를 보는 방법
+    //@Commit // update query를 보는 방법
     void updateItem() {
         //given
         Item item = new Item("item1", 10000, 10);

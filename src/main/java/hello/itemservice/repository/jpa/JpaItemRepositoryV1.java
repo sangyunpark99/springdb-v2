@@ -19,7 +19,7 @@ import java.util.Optional;
 @Repository
 @Transactional
 @RequiredArgsConstructor
-public class JpaItemRepository implements ItemRepository {
+public class JpaItemRepositoryV1 implements ItemRepository {
 
     // JPA는 항상 Transaction안에서 이루어진다. -> Transaction 처리 해주는 것이 필수이다.
     private final EntityManager em; // EntityMangerFactory로 설정을 해주지 않아도, Springd에서 알아서 em을 넣어준다.

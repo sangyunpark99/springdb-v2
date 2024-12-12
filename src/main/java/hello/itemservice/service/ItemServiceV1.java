@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ItemServiceV1 implements ItemService {
 
-    private final ItemRepository itemRepository;
+    private final ItemRepository itemRepository; // 주입 -> 커스텀 빈을 사용해서 주입할 repo 지정
 
     @Override
     public Item save(Item item) {
