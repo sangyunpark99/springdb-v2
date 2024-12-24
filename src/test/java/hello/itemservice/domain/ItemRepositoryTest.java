@@ -40,22 +40,22 @@ class ItemRepositoryTest {
     }
 
     // 각가의 테스트가 끝날때마다 해당 테스트에서 추가한 데이터를 삭제해야 한다.
-    @AfterEach
-    void afterEach() {
-        //MemoryItemRepository 의 경우 제한적으로 사용
-        if (itemRepository instanceof MemoryItemRepository) {
-            ((MemoryItemRepository) itemRepository).clearStore();
-        }
-
-        // 트랜잭션 롤백
-        // 테스트가 실행되어도 롤백이 일어나서 DB에 데이터가 저장되지 않는다.
-        // transactionManager.rollback(status);
-    }
+//    @AfterEach
+//    void afterEach() {
+//        //MemoryItemRepository 의 경우 제한적으로 사용
+//        if (itemRepository instanceof MemoryItemRepository) {
+//            ((MemoryItemRepository) itemRepository).clearStore();
+//        }
+//
+//        // 트랜잭션 롤백
+//        // 테스트가 실행되어도 롤백이 일어나서 DB에 데이터가 저장되지 않는다.
+//        // transactionManager.rollback(status);
+//    }
 
     @Test
     void save() {
         //given
-        Item item = new Item("itemA", 10000, 10);
+        Item item = new Item("itemJ", 10000, 10);
 
         //when
         Item savedItem = itemRepository.save(item);
