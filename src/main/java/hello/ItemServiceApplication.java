@@ -1,6 +1,6 @@
-package hello.itemservice;
+package hello;
 
-import hello.itemservice.config.*;
+import hello.itemservice.TestDataInit;
 import hello.itemservice.repository.ItemRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -13,22 +13,22 @@ import org.springframework.context.annotation.Profile;
 //@Import(MemoryConfig.class)
 //@Import(JdbcTemplateV1Config.class)
 //@Import(JdbcTemplateV3Config.class)
-@SpringBootApplication(scanBasePackages = "hello.itemservice.web")
+@SpringBootApplication
 //@Import(JpaConfig.class)
 //@Import(SpringDataJpaConfig.class)
 //@Import(QuerydslConfig.class)
-@Import(V2Config.class)
+//@Import(V2Config.class)
 public class ItemServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ItemServiceApplication.class, args);
 	}
 
-	@Bean
-	@Profile("local")
-	public TestDataInit testDataInit(ItemRepository itemRepository) {
-		return new TestDataInit(itemRepository);
-	}
+//	@Bean
+//	@Profile("local")
+//	public TestDataInit testDataInit(ItemRepository itemRepository) {
+//		return new TestDataInit(itemRepository);
+//	}
 
 	// 아래처럼 빈으로 등록을 하지 않아도 된다.
 //	@Bean
